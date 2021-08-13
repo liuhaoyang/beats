@@ -16,8 +16,9 @@ docker build -t "${image}" \
     --label "commit=$(git rev-parse HEAD)" \
     --label "build-time=$(date '+%Y-%m-%d %T%z')" \
     -f "Dockerfile" .
-#docker login -u "${DOCKER_REGISTRY_USERNAME}" -p "${DOCKER_REGISTRY_PASSWORD}" "${DOCKER_REGISTRY}"
 
-#docker push "${image}"
+docker login -u "${DOCKER_REGISTRY_USERNAME}" -p "${DOCKER_REGISTRY_PASSWORD}" "${DOCKER_REGISTRY}"
 
-#echo "image=${image}" >> $METAFILE
+docker push "${image}"
+
+echo "image=${image}" >> $METAFILE
